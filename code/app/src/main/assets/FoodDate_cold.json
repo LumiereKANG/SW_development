@@ -1,0 +1,52 @@
+[
+  {
+    "Food": "계란",
+    "Category": "유제품/계란",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "우유",
+    "Category": "유제품/계란",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "양파",
+    "Category": "채소",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "바나나",
+    "Category": "과일",
+    "ExpirationDate": 6
+  },
+  {
+    "Food": "포도",
+    "Category": "과일",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "복숭아",
+    "Category": "과일",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "마늘",
+    "Category": "채소",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "참외",
+    "Category": "과일",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "오렌지",
+    "Category": "과일",
+    "ExpirationDate": 10
+  },
+  {
+    "Food": "콩나물",
+    "Category": "채소",
+    "ExpirationDate": 10
+  }
+]
