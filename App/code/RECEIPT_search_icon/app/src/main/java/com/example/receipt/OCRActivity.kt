@@ -1,5 +1,6 @@
 package com.example.receipt
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.res.AssetManager
@@ -11,9 +12,13 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.receipt.databinding.ActivityOcractivityBinding//
 import com.googlecode.tesseract.android.TessBaseAPI
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_ocractivity.*
+import kotlinx.android.synthetic.main.image_crop.*
 import org.json.JSONArray
 import java.io.*
 import java.text.SimpleDateFormat
@@ -27,18 +32,18 @@ class OCRActivity : PermissionActivity() {
     val PERM_CAMERA = 10
     val REQ_CAMERA = 11
     val REQ_GALLERY = 12
-    //val ingredient_list = listOf<String>("사과","배","귤","수박","참외","토마토","바나나","딸기","포도","복숭아","오렌지","두부","콩나물","고구마","감자","양파","마늘")
 
     lateinit var tess : TessBaseAPI
     var dataPath : String = ""
-
     val binding by lazy { ActivityOcractivityBinding.inflate(layoutInflater) }
+
+    private val GALLERY_REQUEST_CODE = 1234
+    private val TAG = "AppDebug"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root);
-
 
         ocrOk.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
@@ -46,14 +51,20 @@ class OCRActivity : PermissionActivity() {
         }
 
         requirePermissions(arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), PERM_STORAGE)
-        /**
-         * ocr
-         */
+
         dataPath = filesDir.toString() + "/tesseract/"
         checkFile(File(dataPath + "tessdata/"), "kor")
         var lang: String = "kor"
         tess = TessBaseAPI()
         tess.init(dataPath, lang)
+    }
+    private fun pickFromGallery(){
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        val mimeTypes = arrayOf("image/jpeg", "image/png", "image/jpg")
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
 
     fun initViews() {
@@ -85,7 +96,6 @@ class OCRActivity : PermissionActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
         startActivityForResult(intent, REQ_GALLERY)
-
     }
 
     //원본 이미지를 저장할 Uri를 MediaStore(데이터베이스)에 생성하는 메서드
@@ -106,6 +116,7 @@ class OCRActivity : PermissionActivity() {
 
     //원본 이미지를 불러오는 메서드
     fun loadBitmap(photoUri: Uri): Bitmap? {
+
         var image: Bitmap? =null
         try {
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1){
@@ -119,6 +130,8 @@ class OCRActivity : PermissionActivity() {
             e.printStackTrace()
         }
         return image
+
+        Log.d("이미지 로드", image.toString())
     }
 
     override fun permissionGranted(requestCode: Int) {
@@ -146,36 +159,63 @@ class OCRActivity : PermissionActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
+
         if(resultCode == RESULT_OK){
             when(requestCode){
                 REQ_CAMERA ->{
                     realUri?.let{ uri->
-                        val bitmap = loadBitmap(uri)
-                        binding.imagePreViewOCR.setImageBitmap(bitmap)// 촬영한 이미지 가져옴
-                        if (bitmap != null) {
-                            processImage(bitmap.copy(Bitmap.Config.ARGB_8888,true)) //ocr로 추출한 키워드 표시
-                            //intent.putExtra("bitmap", Data(bitmap) as Serializable)
-                            //startActivity(intent)
-                        }
+                        launchImageCrop(uri)
                     }
                     //val bitmap = data?.extras?.get("data") //미리보기 이미지
                     //binding.imagePreview.setImageBitmap(bitmap)
-
                 }
 
                 REQ_GALLERY -> {
                     data?.data?.let { uri ->
-                        val bitmap = loadBitmap(uri)
-                        binding.imagePreViewOCR.setImageURI(uri)
-                        if (bitmap != null) {
-                            processImage(bitmap.copy(Bitmap.Config.ARGB_8888,true)) // ocr로 추출한 키워드 표시
-                        }
+                       //======================================================================================= 여기야 여기
+                        //https://www.youtube.com/watch?v=DBANpg2Cl7A 이거보고 만들었어
+                        launchImageCrop(uri)
+                    }
+                }
+                CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                    val result = CropImage.getActivityResult(data)
+                    if (resultCode==Activity.RESULT_OK) {
+                        result.uri?.let{uri ->
+                            val bitmap = loadBitmap(uri)
+                            binding.imagePreViewOCR.setImageURI(uri)
 
+                            if (bitmap != null) {
+                                processImage(bitmap.copy(Bitmap.Config.ARGB_8888,true)) // ocr로 추출한 키워드 표시
+                            }
+                            Log.d("이미지 전처리 에엥",uri.toString())
+                        }
+                        binding.imagePreViewOCR.setImageURI(result.uri)
+                    }
+                    else if(resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
+                        Log.e(TAG, "Crop error: ${result.error}")
                     }
                 }
             }
-
         }
+    }
+
+    private fun setImage(uri: Uri) {
+        Glide.with(this)
+            .load(uri)
+            .into(image)
+
+
+    }
+
+    private fun launchImageCrop(uri: Uri): Bitmap? {
+        Log.d("이미지 전처리",uri.toString())
+        CropImage.activity(uri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            //.setAspectRatio(1920,1080)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .start(this)
+        return loadBitmap(uri)
+
     }
 
     /**
