@@ -130,6 +130,8 @@ class OCRActivity : PermissionActivity() {
             e.printStackTrace()
         }
         return image
+
+        Log.d("이미지 로드", image.toString())
     }
 
     override fun permissionGranted(requestCode: Int) {
@@ -162,40 +164,32 @@ class OCRActivity : PermissionActivity() {
             when(requestCode){
                 REQ_CAMERA ->{
                     realUri?.let{ uri->
-
-                        val bitmap = loadBitmap(uri)
-                        binding.imagePreViewOCR.setImageBitmap(bitmap)// 촬영한 이미지 가져옴
-                        if (bitmap != null) {
-                            processImage(bitmap.copy(Bitmap.Config.ARGB_8888,true)) //ocr로 추출한 키워드 표시
-                            //intent.putExtra("bitmap", Data(bitmap) as Serializable)
-                            //startActivity(intent)
-                        }
+                        launchImageCrop(uri)
                     }
                     //val bitmap = data?.extras?.get("data") //미리보기 이미지
                     //binding.imagePreview.setImageBitmap(bitmap)
-
                 }
 
                 REQ_GALLERY -> {
                     data?.data?.let { uri ->
-                        launchImageCrop(uri)//======================================================================================= 여기야 여기
+                       //======================================================================================= 여기야 여기
                         //https://www.youtube.com/watch?v=DBANpg2Cl7A 이거보고 만들었어
-                        val bitmap = loadBitmap(uri)
-                        binding.imagePreViewOCR.setImageURI(uri)
-                        if (bitmap != null) {
-
-                            processImage(bitmap.copy(Bitmap.Config.ARGB_8888,true)) // ocr로 추출한 키워드 표시
-                        }
-
+                        launchImageCrop(uri)
                     }
                 }
                 CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                     val result = CropImage.getActivityResult(data)
                     if (resultCode==Activity.RESULT_OK) {
                         result.uri?.let{uri ->
-                            setImage(uri)
+                            val bitmap = loadBitmap(uri)
+                            binding.imagePreViewOCR.setImageURI(uri)
+
+                            if (bitmap != null) {
+                                processImage(bitmap.copy(Bitmap.Config.ARGB_8888,true)) // ocr로 추출한 키워드 표시
+                            }
+                            Log.d("이미지 전처리 에엥",uri.toString())
                         }
-                        setImage(result.uri)
+                        binding.imagePreViewOCR.setImageURI(result.uri)
                     }
                     else if(resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE){
                         Log.e(TAG, "Crop error: ${result.error}")
@@ -213,12 +207,15 @@ class OCRActivity : PermissionActivity() {
 
     }
 
-    private fun launchImageCrop(uri: Uri){
+    private fun launchImageCrop(uri: Uri): Bitmap? {
+        Log.d("이미지 전처리",uri.toString())
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
             //.setAspectRatio(1920,1080)
-            //.setCropShape(CropImageView.CropShape.RECTANGLE)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
+        return loadBitmap(uri)
+
     }
 
     /**
