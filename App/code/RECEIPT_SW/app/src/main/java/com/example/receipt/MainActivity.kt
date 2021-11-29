@@ -12,21 +12,22 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receipt.databinding.ActivityMainBinding
-import com.example.receipt.ocr.ListExtratActivity
-import com.example.receipt.possetionList.MyListDb
-import com.example.receipt.recycle.MyListAdapter
-import com.example.receipt.recycle.MyList
+import com.example.receipt.ocr.ListExtractActivity
+import kotlinx.android.synthetic.main.activity_main.rv_profile
 import kotlinx.android.synthetic.main.activity_main.*
+import com.example.receipt.room.Mylist
+import com.example.receipt.room.MylistAdapter
+import com.example.receipt.room.MylistDB
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    val displayList = ArrayList<MyList>()
+    val displayList = ArrayList<Mylist>()
 
     //현재 보유 품목
-    private var myListDb : MyListDb? =null
-    private var myList = listOf<MyList>()
+    private var mylistDb : MylistDB? =null
+    private var myList = listOf<Mylist>()
 
     private lateinit var mBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,21 +37,21 @@ class MainActivity : AppCompatActivity() {
 
         val r = Runnable {
             try {
-                myListDb = MyListDb.getInstance(this)
-                myList= myListDb?.myListDao()?.getAll()!!
+                mylistDb = MylistDB.getInstance(this)
+                myList= mylistDb?.mylistDao()?.getAll()!!// mylist에 있는 내용 다 들고옴
                 //데이터 읽고 쓸 떄는 쓰레드 사용
                 Log.d("myList", "${myList.size}")
                 displayList.addAll(myList)
 
-                val myListAdapter = MyListAdapter(this, displayList)
-                myListAdapter.setOnItemClickListener(object: MyListAdapter.OnItemClickListener {
-                    override fun onItemEditClick(data: MyList, pos: Int) {
+                val mylistAdapter =MylistAdapter(this, displayList)
+                mylistAdapter.setOnItemClickListener(object: MylistAdapter.OnItemClickListener {
+                    override fun onItemEditClick(data: Mylist, pos: Int) {
                     }
-                    override fun onItemDeleteClick(data: MyList, position: Int) {
+                    override fun onItemDeleteClick(data:Mylist, position: Int) {
                     }
                 })
 
-                mBinding.rvProfile.adapter = myListAdapter
+                mBinding.rvProfile.adapter = mylistAdapter
                 mBinding.rvProfile.addItemDecoration(DistanceItemDecorator(10))
 
             }catch(e:Exception){
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         thread.start()
 
         btn_cam.setOnClickListener {
-            val intent = Intent(this, ListExtratActivity::class.java)
+            val intent = Intent(this, ListExtractActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -113,13 +114,13 @@ class MainActivity : AppCompatActivity() {
         rv_profile.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_profile.setHasFixedSize(true)
-        rv_profile.adapter = MyListAdapter(this, displayList)
+        rv_profile.adapter = MylistAdapter(this, displayList)
 
         return super.onCreateOptionsMenu(menu)
     }
     override fun onDestroy() {
-        MyListDb.destroyInstance()
-        myListDb = null
+        MylistDB.destroyInstance()
+        mylistDb = null
         super.onDestroy()
     }
 

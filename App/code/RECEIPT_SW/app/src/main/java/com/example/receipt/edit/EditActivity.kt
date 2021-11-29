@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import com.example.receipt.MainActivity
 import com.example.receipt.R
-import com.example.receipt.possetionList.MyListDb
-import com.example.receipt.recycle.MyList
+import com.example.receipt.room.Mylist
+import com.example.receipt.room.MylistDB
 import kotlinx.android.synthetic.main.activity_edit.*
 import org.json.JSONArray
 import java.util.Calendar;
@@ -18,15 +18,11 @@ import java.time.format.DateTimeFormatter
 
 class EditActivity : AppCompatActivity() {
 
-    val REFRIGER = 0
-    val ROOMTEMP = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        var item = intent.getSerializableExtra("item") as MyList
+        var item = intent.getSerializableExtra("item") as Mylist
 
 
         iv_editimage.setImageResource(item.item)
@@ -37,37 +33,56 @@ class EditActivity : AppCompatActivity() {
         tv_editdateExplan.setText("소비기한은 유통기한 마지막날을 기준으로 계산됩니다.")
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-d")
-        var startDate = LocalDate.parse(item.dates, formatter).minusDays(jsonParsing_refrigerated(item).toLong()).toString()
-
+        var startDate = LocalDate.parse(item.dates, formatter).minusDays(jsonParsingDay(item).toLong()).toString()
         tv_editDate.setText(startDate)
         tv_editResultTitle.setText("수정된 소비기한")
         tv_editResult.setText(item.dates)
 
 
-        radioGroup.setOnCheckedChangeListener { group, checkedId->
+        radioGroup.setOnCheckedChangeListener{ group, checkedId->
             when(checkedId){
                 R.id.refri_btn -> {
-                    editStorage(item, startDate, REFRIGER)
+                    item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsingDay(item).toLong()).toString()
+                    tv_editResult.setText(item.dates)
 
-                    cal_btn.setOnClickListener {
-                        editDate(item, REFRIGER)
+                    cal_btn.setOnClickListener{
+                        var daySelect = ""
+                        val cal = Calendar.getInstance()    //캘린더뷰 만들기
+                        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                            daySelect = "${year}-${month+1}-${dayOfMonth}"
+                            val dayInfo = jsonParsingDay(item)
+                            item.dates = calculateDate(daySelect,dayInfo)
+                            tv_editDate.setText(daySelect)
+                            tv_editResult.setText(item.dates)
+                        }
+                        DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)).show()
                     }
                 }
 
-                R.id.roomtem_btn -> {
-                    editStorage(item, startDate, ROOMTEMP)
+                R.id.roomtem_btn ->{
+                    item.dates = LocalDate.parse(startDate, formatter).plusDays(3.toLong()).toString()
+                    tv_editResult.setText(item.dates)
 
-                    cal_btn.setOnClickListener {
-                        editDate(item, ROOMTEMP)
+                    cal_btn.setOnClickListener{
+                        var daySelect = ""
+                        val cal = Calendar.getInstance()    //캘린더뷰 만들기
+                        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                            daySelect = "${year}-${month+1}-${dayOfMonth}"
+                            val dayInfo = "3"
+                            item.dates = calculateDate(daySelect,dayInfo)
+                            tv_editDate.setText(daySelect)
+                            tv_editResult.setText(item.dates)
+                        }
+                        DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)).show()
                     }
                 }
             }
         }
 
-        edit_ok.setOnClickListener {
+        edit_ok.setOnClickListener{
             Log.d("데이터 베이스 저장",item.dates)
             val r = Runnable {
-                MyListDb?.getInstance(this)?.myListDao()?.update(item)!!
+                MylistDB?.getInstance(this)?.mylistDao()?.update(item)!!
             }
             val thread = Thread(r)
             thread.start()
@@ -83,18 +98,7 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-
-    fun jsonParsing_roomTemperatureDate(item : MyList): String {
-        var jsonString = assets.open("json/data.json").reader().readText()
-        val jsonArray = JSONArray(jsonString)
-        val i = item.index
-        val jsonObject = jsonArray.getJSONObject(i)
-        val dayInfo = "5"
-
-        return dayInfo
-    }
-
-    fun jsonParsing_refrigerated(item : MyList):String {
+    fun jsonParsingDay(item : Mylist):String{
         var jsonString = assets.open("json/data.json").reader().readText()
         val jsonArray = JSONArray(jsonString)
         val i = item.index
@@ -102,42 +106,6 @@ class EditActivity : AppCompatActivity() {
         val dayInfo = jsonObject.getString("ExpirationDate")
 
         return dayInfo
-    }
-
-    fun editDate(item: MyList, requestState: Int) {
-        var dayInfo = ""
-        var daySelect = ""
-
-        when (requestState) {
-            REFRIGER -> dayInfo = jsonParsing_refrigerated(item)
-            ROOMTEMP -> dayInfo = jsonParsing_roomTemperatureDate(item)
-        }
-
-        val cal = Calendar.getInstance()    //캘린더뷰 만들기
-        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            daySelect = "${year}-${month+1}-${dayOfMonth}"
-            item.dates = calculateDate(daySelect, dayInfo)
-            tv_editDate.setText(daySelect)
-            tv_editResult.setText(item.dates)
-        }
-        DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
-            cal.get(Calendar.DAY_OF_MONTH)
-        ).show()
-    }
-
-    fun editStorage(item: MyList, startDate: String, requestState: Int) {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-d")
-
-        when (requestState) {
-            REFRIGER -> {
-                item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsing_refrigerated(item).toLong()).toString()
-            }
-            ROOMTEMP -> {
-                item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsing_roomTemperatureDate(item).toLong()).toString()
-            }
-        }
-
-        tv_editResult.setText(item.dates)
     }
 
     fun calculateDate(daySelect : String , dayInfo : String) : String{
