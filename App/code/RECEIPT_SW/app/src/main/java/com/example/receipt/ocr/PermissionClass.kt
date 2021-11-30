@@ -29,9 +29,9 @@ abstract class PermissionClass : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(grantResults.all{it == PackageManager.PERMISSION_GRANTED}) {
+        if (grantResults.all {it == PackageManager.PERMISSION_GRANTED}) {
             permissionGranted(requestCode)
-        }else{
+        } else {
             permissionDenied(requestCode)
         }
     }

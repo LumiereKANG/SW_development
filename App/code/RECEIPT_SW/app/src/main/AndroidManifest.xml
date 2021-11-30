@@ -26,7 +26,7 @@
             android:resource="@xml/actions" />
 
         <activity
-            android:name=".ocr.ListExtractActivity"
+            android:name=".ocr.ListExtratActivity"
             android:exported="true" />
         <activity
             android:name=".examActivity"
