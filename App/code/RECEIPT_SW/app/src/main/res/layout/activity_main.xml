@@ -4,40 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:circularflow_radiusInDP="30dp"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/searchview_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="#3900BCD4"
-        android:text="직접 추가하기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_profile" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_cam"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="#3900BCD4"
-        android:text="영수증 촬영하기"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#74B577"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:textColor="#00FFFFFF"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rv_profile"
-        app:layout_constraintTop_toBottomOf="@+id/rv_profile" />
+        tools:ignore="TextContrastCheck,TextContrastCheck"
+        tools:text="." />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -45,17 +41,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="205dp" />
-
-    <Button
-        android:id="@+id/btn_home"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="#3900BCD4"
-        android:text="HOME"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/rv_profile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
