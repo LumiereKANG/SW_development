@@ -6,52 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ocr.ListExtratActivity">
 
-    <TextView
-        android:id="@+id/ocrText"
-        android:layout_width="194dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="196dp"
-        android:text="영수증 출력"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/imagePreViewOCR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/imagePreViewOCR"
         android:layout_width="237dp"
         android:layout_height="212dp"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139"
         app:srcCompat="@drawable/icon" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_profile"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="370dp"
+        android:layout_height="421dp"
         android:layout_margin="20dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePreViewOCR"
-        app:layout_constraintVertical_bias="0.681">
+        app:layout_constraintTop_toBottomOf="@+id/imagePreViewOCR">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="117dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -59,23 +38,26 @@
 
         <Button
             android:id="@+id/OcrCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:layout_gravity="left"
+            android:backgroundTint="#74B577"
             android:text="카메라" />
 
         <Button
             android:id="@+id/OcrGerraly"
-            android:layout_width="164dp"
-            android:layout_height="48dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="갤러리에서 가져오기" />
+            android:backgroundTint="#74B577"
+            android:text="갤러리" />
 
         <Button
             android:id="@+id/ocrOk"
-            android:layout_width="88dp"
-            android:layout_height="48dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:layout_gravity="right"
+            android:backgroundTint="#74B577"
             android:text="확인"
             android:textSize="20sp" />
     </FrameLayout>

@@ -307,7 +307,7 @@ class ListExtractActivity : PermissionClass() {
         return resultList
     }
 
-    **/
+
 
     // 제이슨 파일에서 들고와서 데이터 베이스 저장
     fun insertDB_item(ingre_result: ArrayList<Int>, jsonArray: JSONArray) {
