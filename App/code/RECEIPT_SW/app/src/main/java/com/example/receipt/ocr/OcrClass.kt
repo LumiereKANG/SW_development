@@ -105,7 +105,7 @@ class OcrClass : AppCompatActivity(){
             val jsonObject = jsonArray.getJSONObject(i)
             val name = jsonObject.getString("Food")
             val cate = jsonObject.getString("Category")
-            val day = jsonObject.getString("ExpirationDate")
+            val day = jsonObject.getString("Refri_Date")
 
             ocrViewlist.add(ListExtractView(iconImage[i], name, cate, today.plusDays(day.toLong())))
          }
@@ -124,7 +124,7 @@ class OcrClass : AppCompatActivity(){
             newitem.category = jsonObject.getString("Category")
             newitem.index =  jsonObject.getInt("Index")
 
-            val day = jsonObject.getString("ExpirationDate")
+            val day = jsonObject.getString("Refri_Date")
             newitem.dates = today.plusDays(day.toLong()).toString()
 
             myListDb = MyListDb.getInstance(context)

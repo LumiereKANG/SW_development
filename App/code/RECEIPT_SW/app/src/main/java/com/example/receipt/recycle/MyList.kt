@@ -12,7 +12,9 @@ class MyList(@PrimaryKey var id: Long?,
           @ColumnInfo(name = "name") var name: String,
           @ColumnInfo(name = "categories") var category: String,
           @ColumnInfo(name = "dates") var dates: String,
-          @ColumnInfo(name = "index") var index: Int
+          @ColumnInfo(name = "index") var index: Int,
+
+
 
 ): Serializable {
         constructor(): this(null,0,"","","",0)

@@ -3,61 +3,71 @@
     "Index" : 0,
     "Food": "사과",
     "Category": "과일",
-    "ExpirationDate": 1
+    "Refri_Date": 21,
+    "RoomTem_Date": 1
 
   },
   {
     "Index" : 1,
     "Food": "배",
     "Category": "과일",
-    "ExpirationDate": 5
+    "Refri_Date": 5,
+    "RoomTem_Date": 3
   },
   {
     "Index" : 2,
     "Food": "양파",
     "Category": "채소",
-    "ExpirationDate": 20
+    "Refri_Date": 14,
+    "RoomTem_Date": 7
   },
   {
     "Index" : 3,
     "Food": "수박",
-    "Category": "과일",
-    "ExpirationDate": 14
+    "Category": "채소",
+    "Refri_Date": 5,
+    "RoomTem_Date": 0
   },
   {
     "Index" : 4,
     "Food": "토마토",
     "Category": "과일",
-    "ExpirationDate": 63
+    "Refri_Date": 30,
+    "RoomTem_Date": 2
   },
   {
     "Index" : 5,
     "Food": "감자",
     "Category": "채소",
-    "ExpirationDate": 29
+    "Refri_Date": 4,
+    "RoomTem_Date": 40
   },
   {
     "Index" : 6,
     "Food": "고구마",
     "Category": "채소",
-    "ExpirationDate": 17
+    "Refri_Date": 40,
+    "RoomTem_Date": 4
   },
   {
     "Index" : 7,
     "Food": "두부",
     "Category": "콩",
-    "ExpirationDate": 1
+    "Refri_Date": 7,
+    "RoomTem_Date": 0
   },
   {
     "Index" : 8,
     "Food": "오렌지",
     "Category": "과일",
-    "ExpirationDate": 30
+    "Refri_Date": 7,
+    "RoomTem_Date": 10
   },
   {
     "Index" : 9,
     "Food": "콩나물",
     "Category": "채소",
-    "ExpirationDate": 35
+    "Refri_Date": 5,
+    "RoomTem_Date": 14
   }
 ]

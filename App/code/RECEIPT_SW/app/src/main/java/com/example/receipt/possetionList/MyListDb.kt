@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.receipt.recycle.MyList
 
 
-@Database(entities = [MyList::class], version = 1)
+@Database(entities = [MyList::class], version = 2)
 abstract class MyListDb: RoomDatabase() {
     abstract fun myListDao(): MyListDao
 
@@ -18,7 +18,7 @@ abstract class MyListDb: RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(MyListDb::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        MyListDb::class.java, "cat.db")
+                        MyListDb::class.java, "mylist.db")
                         .fallbackToDestructiveMigration()
                         .build()
                 }

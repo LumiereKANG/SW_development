@@ -89,7 +89,7 @@ class EditActivity : AppCompatActivity() {
         val jsonArray = JSONArray(jsonString)
         val i = item.index
         val jsonObject = jsonArray.getJSONObject(i)
-        val dayInfo = "5"
+        val dayInfo = jsonObject.getString("RoomTem_Date")
 
         return dayInfo
     }
@@ -99,7 +99,7 @@ class EditActivity : AppCompatActivity() {
         val jsonArray = JSONArray(jsonString)
         val i = item.index
         val jsonObject = jsonArray.getJSONObject(i)
-        val dayInfo = jsonObject.getString("ExpirationDate")
+        val dayInfo = jsonObject.getString("Refri_Date")
 
         return dayInfo
     }
@@ -123,7 +123,8 @@ class EditActivity : AppCompatActivity() {
             tv_editDate.setText(daySelect)
             tv_editResult.setText(item.dates)
         }
-        DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)).show()
+        DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)).show()
     }
 
     fun editStorage(item: MyList, startDate: String, requestState: Int){
@@ -132,10 +133,12 @@ class EditActivity : AppCompatActivity() {
 
         when (requestState) {
             REFRIGER -> {
-                item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsing_refrigerated(item).toLong()).toString()
+                item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsing_refrigerated(item)
+                    .toLong()).toString()
             }
             ROOMTEMP -> {
-                item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsing_roomTemperatureDate(item).toLong()).toString()
+                item.dates = LocalDate.parse(startDate, formatter).plusDays(jsonParsing_roomTemperatureDate(item)
+                    .toLong()).toString()
             }
         }
 
