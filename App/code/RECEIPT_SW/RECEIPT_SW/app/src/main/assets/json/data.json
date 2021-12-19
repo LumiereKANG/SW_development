@@ -1,0 +1,472 @@
+[
+  {
+    "Index" : 0,
+    "Food": "사과",
+    "Category": "과일",
+    "Refri_Date": 21,
+    "RoomTem_Date": 1
+
+  },
+  {
+    "Index" : 1,
+    "Food": "배",
+    "Category": "과일",
+    "Refri_Date": 5,
+    "RoomTem_Date": 4
+  },
+  {
+    "Index" : 2,
+    "Food": "양파",
+    "Category": "채소",
+    "Refri_Date": 14,
+    "RoomTem_Date": 7
+  },
+  {
+    "Index" : 3,
+    "Food": "수박",
+    "Category": "채소",
+    "Refri_Date": 5,
+    "RoomTem_Date": 2
+  },
+  {
+    "Index" : 4,
+    "Food": "토마토",
+    "Category": "과일",
+    "Refri_Date": 30,
+    "RoomTem_Date": 2
+  },
+  {
+    "Index" : 5,
+    "Food": "감자",
+    "Category": "채소",
+    "Refri_Date": 4,
+    "RoomTem_Date": 40
+  },
+  {
+    "Index" : 6,
+    "Food": "고구마",
+    "Category": "채소",
+    "Refri_Date": 40,
+    "RoomTem_Date": 4
+  },
+  {
+    "Index" : 7,
+    "Food": "두부",
+    "Category": "콩",
+    "Refri_Date": 7,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 8,
+    "Food": "오렌지",
+    "Category": "과일",
+    "Refri_Date": 7,
+    "RoomTem_Date": 10
+  },
+  {
+    "Index" : 9,
+    "Food": "콩나물",
+    "Category": "채소",
+    "Refri_Date": 5,
+    "RoomTem_Date": 14
+  },
+  {
+    "Index" : 10,
+    "Food": "귤",
+    "Category": "과일",
+    "Refri_Date": 10,
+    "RoomTem_Date": 10
+  },
+  {
+    "Index" : 11,
+    "Food": "멜론",
+    "Category": "과일",
+    "Refri_Date": 3,
+    "RoomTem_Date": 1
+  },
+  {
+    "Index" : 12,
+    "Food": "감",
+    "Category": "과일",
+    "Refri_Date": 6,
+    "RoomTem_Date": 5
+  },
+  {
+    "Index" : 13,
+    "Food": "참외",
+    "Category": "과일",
+    "Refri_Date": 7,
+    "RoomTem_Date": 5
+  },
+  {
+    "Index" : 14,
+    "Food": "바나나",
+    "Category": "과일",
+    "Refri_Date": 3,
+    "RoomTem_Date": 7
+  },
+  {
+    "Index" : 15,
+    "Food": "딸기",
+    "Category": "과일",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 16,
+    "Food": "키위",
+    "Category": "과일",
+    "Refri_Date": 3,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 17,
+    "Food": "블루베리",
+    "Category": "채소",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 18,
+    "Food": "포도",
+    "Category": "과일",
+    "Refri_Date": 3,
+    "RoomTem_Date": 3
+  },
+  {
+    "Index" : 19,
+    "Food": "자두",
+    "Category": "과일",
+    "Refri_Date": 3,
+    "RoomTem_Date": 4
+  },
+  {
+    "Index" : 20,
+    "Food": "자몽",
+    "Category": "과일",
+    "Refri_Date": 10,
+    "RoomTem_Date": 10
+  },
+  {
+    "Index" : 21,
+    "Food": "망고",
+    "Category": "과일",
+    "Refri_Date": 7,
+    "RoomTem_Date": 4
+  },
+  {
+    "Index" : 22,
+    "Food": "체리",
+    "Category": "과일",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 23,
+    "Food": "아보카도",
+    "Category": "과일",
+    "Refri_Date": 3,
+    "RoomTem_Date": 90
+  },
+  {
+    "Index" : 24,
+    "Food": "마늘",
+    "Category": "채소",
+    "Refri_Date": 10,
+    "RoomTem_Date": 30
+  },
+  {
+    "Index" : 25,
+    "Food": "대파",
+    "Category": "채소",
+    "Refri_Date": 10,
+    "RoomTem_Date": 10
+  },
+  {
+    "Index" : 26,
+    "Food": "생강",
+    "Category": "채소",
+    "Refri_Date": 10,
+    "RoomTem_Date": 1
+  },
+  {
+    "Index" : 27,
+    "Food": "오이",
+    "Category": "채소",
+    "Refri_Date": 4,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 28,
+    "Food": "가지",
+    "Category": "채소",
+    "Refri_Date": 5,
+    "RoomTem_Date": 1
+  },
+  {
+    "Index" : 29,
+    "Food": "애호박",
+    "Category": "채소",
+    "Refri_Date": 10,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 30,
+    "Food": "옥수수",
+    "Category": "채소",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 31,
+    "Food": "상추",
+    "Category": "채소",
+    "Refri_Date": 3,
+    "RoomTem_Date": 5
+  },
+  {
+    "Index" : 32,
+    "Food": "고추",
+    "Category": "채소",
+    "Refri_Date": 4,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 33,
+    "Food": "시금치",
+    "Category": "채소",
+    "Refri_Date": 3,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 34,
+    "Food": "양상추",
+    "Category": "채소",
+    "Refri_Date": 10,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 35,
+    "Food": "브로콜리",
+    "Category": "채소",
+    "Refri_Date": 7,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 36,
+    "Food": "당근",
+    "Category": "채소",
+    "Refri_Date": 14,
+    "RoomTem_Date": 30
+  },
+  {
+    "Index" : 37,
+    "Food": "버섯",
+    "Category": "채소",
+    "Refri_Date": 5,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 38,
+    "Food": "양배추",
+    "Category": "채소",
+    "Refri_Date": 10,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 39,
+    "Food": "아스파라거스",
+    "Category": "채소",
+    "Refri_Date": 3,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 40,
+    "Food": "계란",
+    "Category": "알",
+    "Refri_Date": 28,
+    "RoomTem_Date": 30
+  },
+  {
+    "Index" : 41,
+    "Food": "닭",
+    "Category": "육류",
+    "Refri_Date": 2,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 42,
+    "Food": "오리고기",
+    "Category": "육류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 43,
+    "Food": "양고기",
+    "Category": "육류",
+    "Refri_Date": 4,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 44,
+    "Food": "돼지",
+    "Category": "육류",
+    "Refri_Date": 3,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 45,
+    "Food": "소",
+    "Category": "육류",
+    "Refri_Date": 4,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 46,
+    "Food": "생선",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 47,
+    "Food": "오징어",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 48,
+    "Food": "새우",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 49,
+    "Food": "게",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 50,
+    "Food": "랍스타",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 51,
+    "Food": "명란",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 52,
+    "Food": "굴",
+    "Category": "어류",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 53,
+    "Food": "조개",
+    "Category": "채소",
+    "Refri_Date": 2,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 54,
+    "Food": "케찹",
+    "Category": "소스",
+    "Refri_Date": 180,
+    "RoomTem_Date": 30
+  },
+  {
+    "Index" : 55,
+    "Food": "마요네즈",
+    "Category": "소스",
+    "Refri_Date": 60,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 56,
+    "Food": "샐러드 드레싱",
+    "Category": "소스",
+    "Refri_Date": 90,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 57,
+    "Food": "어묵",
+    "Category": "완제품",
+    "Refri_Date": 8,
+    "RoomTem_Date": 1
+  },
+  {
+    "Index" : 58,
+    "Food": "소시지",
+    "Category": "완제품",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 59,
+    "Food": "케이크",
+    "Category": "빵",
+    "Refri_Date": 7,
+    "RoomTem_Date": 1
+  },
+  {
+    "Index" : 60,
+    "Food": "식빵",
+    "Category": "빵",
+    "Refri_Date": 3,
+    "RoomTem_Date": 5
+  },
+  {
+    "Index" : 61,
+    "Food": "요거트",
+    "Category": "유제품",
+    "Refri_Date": 10,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 62,
+    "Food": "요구르트",
+    "Category": "유제품",
+    "Refri_Date": 10,
+    "RoomTem_Date": 5
+  },
+  {
+    "Index" : 63,
+    "Food": "치즈",
+    "Category": "유제품",
+    "Refri_Date": 30,
+    "RoomTem_Date": 2
+  },
+  {
+    "Index" : 64,
+    "Food": "버터",
+    "Category": "유제품",
+    "Refri_Date": 60,
+    "RoomTem_Date": 2
+  },
+  {
+    "Index" : 65,
+    "Food": "생크림",
+    "Category": "유제품",
+    "Refri_Date": 1,
+    "RoomTem_Date": 0
+  },
+  {
+    "Index" : 66,
+    "Food": "우유",
+    "Category": "유제품",
+    "Refri_Date": 7,
+    "RoomTem_Date": 0
+  }
+]
